@@ -13,22 +13,21 @@
 	<div id="navbar">
 		<div class="userMenu">
 			<ul>
-				<li><a href="index.html">User首页</a></li>
-				<li><a href="orderlist.html">我的订单</a></li>
-				<li class="current"><a href="shopping.html">购物车</a></li>
-				<li><a href="#">注销</a></li>
+				<li class="current"><a href="${pageContext.request.contextPath }/showbooks">User首页</a></li>
+					<li><a href="orderlist">我的订单</a></li>
+					<li><a href="cartlist">购物车</a></li>
+					<li><a href="${pageContext.request.contextPath}/">注销</a>
+				</li>
 			</ul>
 		</div>
-		<form method="get" name="search" action="">
-			搜索：<input class="input-text" type="text" name="keywords" /><input class="input-btn" type="submit" name="submit" value="" />
-		</form>
+		&nbsp;
 	</div>
 </div>
 <div id="content" class="wrap">
 	<div class="success">
 		<div class="information">
 			<p>恭喜：购买成功！</p>
-			<p><a href="orderlist.html">点此查看订单详情&gt;&gt;</a></p>
+			<p><a href="orderlist">点此查看订单详情&gt;&gt;</a></p>
 		</div>
 	</div>
 </div>

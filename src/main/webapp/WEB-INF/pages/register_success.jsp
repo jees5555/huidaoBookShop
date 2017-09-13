@@ -11,9 +11,7 @@
 <div id="header" class="wrap">
 	<div id="logo">杭州汇道网上书城</div>
 	<div id="navbar">
-		<form method="get" name="search" action="">
-			搜索：<input class="input-text" type="text" name="keywords" /><input class="input-btn" type="submit" name="submit" value="" />
-		</form>
+		&nbsp;
 	</div>
 </div>
 <div id="register">

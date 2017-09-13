@@ -11,9 +11,7 @@
 <div id="header" class="wrap">
 	<div id="logo">杭州汇道网上书城</div>
 	<div id="navbar">
-		<form method="get" name="search" action="">
-			搜索：<input class="input-text" type="text" name="keywords" /><input class="input-btn" type="submit" name="submit" value="" />
-		</form>
+		&nbsp;
 	</div>
 </div>
 <div id="register">
@@ -37,7 +35,9 @@
 			<dt>Email地址：</dt>
 			<dd><input class="input-text" type="text" name="email" /><span>邮箱输入不正确！</span></dd>
 			<dt></dt>
-			<dd class="button"><input class="input-reg" type="submit" name="register" value="" /></dd>
+			<dd class="button">
+			<input class="input-reg" type="submit" name="register" value="" />
+			</dd>
 		</dl>
 	</form>
 </div>
