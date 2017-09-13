@@ -1,4 +1,4 @@
-package cn.trda.test;
+package com.github.jees5555.huidaoBookShop.test;
 
 import java.util.List;
 
