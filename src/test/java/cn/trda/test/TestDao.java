@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import cn.trda.dao.BookDao;
-import cn.trda.dao.impl.BookDaoImpl;
-import cn.trda.entity.Books;
+import com.github.jees5555.huidaoBookShop.dao.BookDao;
+import com.github.jees5555.huidaoBookShop.dao.impl.BookDaoImpl;
+import com.github.jees5555.huidaoBookShop.entity.Books;
 
 public class TestDao {
 		

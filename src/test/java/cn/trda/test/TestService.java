@@ -2,9 +2,9 @@ package cn.trda.test;
 
 import org.junit.Test;
 
-import cn.trda.service.BookService;
-import cn.trda.service.impl.BookServiceImpl;
-import cn.trda.util.Page;
+import com.github.jees5555.huidaoBookShop.service.BookService;
+import com.github.jees5555.huidaoBookShop.service.impl.BookServiceImpl;
+import com.github.jees5555.huidaoBookShop.util.Page;
 
 public class TestService {
 	

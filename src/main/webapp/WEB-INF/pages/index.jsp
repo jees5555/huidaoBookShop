@@ -16,10 +16,10 @@
 			<div class="userMenu">
 				<ul>
 					<li class="current"><a
-						href="${pageContext.request.contextPath }/某个ＳＥＲＶＬＥＴ">User首页</a></li>
-					<li><a href="orderlist.html">我的订单</a></li>
-					<li><a href="shopping.html">购物车</a></li>
-					<li><a href="#">注销</a></li>
+						href="${pageContext.request.contextPath }/showbooks">User首页</a></li>
+					<li><a href="orderlist">我的订单</a></li>
+					<li><a href="cartlist">购物车</a></li>
+					<li><a href="${pageContext.request.contextPath}/">注销</a></li>
 				</ul>
 			</div>
 			<form method="get" name="search" action="">
