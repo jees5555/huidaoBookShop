@@ -11,23 +11,25 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
 
 public class DBCPUtil {
-	private static DataSource ds;
+	private static DataSource dataSource;
 	static{
 		try {
 			InputStream in = DBCPUtil.class.getClassLoader().getResourceAsStream("dbcpconfig.properties");
 			Properties props = new Properties();
 			props.load(in);
-			ds = BasicDataSourceFactory.createDataSource(props);
+			dataSource = BasicDataSourceFactory.createDataSource(props);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 	public static DataSource getDataSource(){
-		return ds;
+		return dataSource;
 	}
+	
 	public static Connection getConnection(){
 		try {
-			return ds.getConnection();
+			return dataSource.getConnection();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

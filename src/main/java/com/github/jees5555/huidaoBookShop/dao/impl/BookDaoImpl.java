@@ -11,44 +11,50 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.github.jees5555.huidaoBookShop.dao.BookDao;
-import com.github.jees5555.huidaoBookShop.entity.Books;
+import com.github.jees5555.huidaoBookShop.entity.Book;
 import com.github.jees5555.huidaoBookShop.exception.Myexception;
 import com.github.jees5555.huidaoBookShop.util.DBCPUtil;
 
-public class BookDaoImpl extends BaseDaoImpl<Books> implements BookDao{
+public class BookDaoImpl implements BookDao{
 	private QueryRunner qr=new QueryRunner(DBCPUtil.getDataSource());
 	
 	@Override
-	public int findAllRecords() {
-		//Object 类型转成int
-		Object obj =null;
-		try {
-			obj = qr.query("select count(0) from Books", new ScalarHandler());
-			return obj==null?0:((Long)obj).intValue();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new Myexception("asdffasdf");
-			}
+	public int findAllRecords(String keywords) throws SQLException {
+		String sql;
+		Long rec =null;
+		if(keywords==null ||"".equals(keywords)){
+			sql="select count(*) from book";
+			rec = qr.query(sql, new ScalarHandler<Long>());
+		}else{
+			keywords="%"+keywords+"%";
+			sql="select count(*) from book where bookname like ?";
+			rec = qr.query(sql, new ScalarHandler<Long>(),keywords);
+		}
+	
+	
+			
+			return rec==null?0:rec.intValue();
 		
 	}
 
 	@Override
-	public List<Books> showPageRecords(int startnum, int pagesize) {
-		// TODO Auto-generated method stub
+	public List<Book> showPageRecords(int startnum, int pagesize,String keywords) throws SQLException {	
+			if(keywords==null ||"".equals(keywords)){
+				return qr.query("select * from book limit ?,?", new BeanListHandler<Book>(Book.class),startnum,pagesize);
+			}else{
+				keywords="%"+keywords+"%";
+				return qr.query("select * from book where bookname like ? limit ?,?", new BeanListHandler<Book>(Book.class),keywords,startnum,pagesize);
+			}
 		
-		try {
-			return qr.query("select * from Books limit ?,?", new BeanListHandler<Books>(Books.class),startnum,pagesize);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new Myexception("asdffasdf");
-		}
 	}
 	
+	@Override
+	public Book findById(int id) throws Exception {
+		String sql ="select * form book where id="+id;
+		return qr.query(sql, new ScalarHandler<Book>());
+	}
+
+
 	
-
-
-
 
 }

@@ -6,16 +6,16 @@ import org.junit.Test;
 
 import com.github.jees5555.huidaoBookShop.dao.BookDao;
 import com.github.jees5555.huidaoBookShop.dao.impl.BookDaoImpl;
-import com.github.jees5555.huidaoBookShop.entity.Books;
+import com.github.jees5555.huidaoBookShop.entity.Book;
 
 public class TestDao {
 		
 	//jnuit 4
 	@Test
-	public void testBookDao(){
+	public void testBookDao() throws Exception{
 		BookDao bd=new BookDaoImpl();//多态
 		int a=bd.findAllRecords();
-		List<Books> books=bd.showPageRecords(0, 3);
+		List<Book> books=bd.showPageRecords(0, 3);
 		System.out.println(books);
 		
 	}

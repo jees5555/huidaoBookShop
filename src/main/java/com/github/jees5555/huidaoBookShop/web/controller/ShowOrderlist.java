@@ -19,8 +19,8 @@ public class ShowOrderlist extends HttpServlet {
 			
 			//String pagenum=request.getParameter("pagenum");
 			//Page page=	bs.showPageRecords(pagenum);
-			//page.setServletUrl("ShowBooks");
 			//request.setAttribute("page", page);
+			request.setAttribute("model", "orderlist");
 			request.getRequestDispatcher("WEB-INF/pages/orderlist.jsp").forward(request, response);
 	}
 

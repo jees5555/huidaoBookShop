@@ -67,7 +67,9 @@
 			<version>1.4</version>
 		</dependency>
   </dependencies>
+
   <build>
+  
   <finalName>huidaoBookShop</finalName>
   <pluginManagement>
   <plugins>
@@ -80,7 +82,10 @@
           <uriEncoding>UTF-8</uriEncoding>
           </configuration>
         </plugin>
+       
       </plugins>
     </pluginManagement>
+    
   </build>
+  
 </project>

@@ -9,7 +9,7 @@ import com.github.jees5555.huidaoBookShop.util.Page;
 public class TestService {
 	
 	@Test
-	public void  test1(){
+	public void  test1() throws Exception{
 		BookService bs=new BookServiceImpl();
 		//client
 		String pagenum="3";//service

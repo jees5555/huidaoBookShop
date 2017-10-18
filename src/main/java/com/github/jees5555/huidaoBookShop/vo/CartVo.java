@@ -1,16 +1,37 @@
-package com.github.jees5555.huidaoBookShop.entity;
+package com.github.jees5555.huidaoBookShop.vo;
 
-public class Books {
+public class CartVo {
+	private int uid;
 	private int bid;
+	private int count;
+	private double bookprice;
 	private String bookname;
-	private float price;
+	private double price;
 	private String image;
 	private int stock;
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	public int getBid() {
 		return bid;
 	}
 	public void setBid(int bid) {
 		this.bid = bid;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public double getBookprice() {
+		return bookprice;
+	}
+	public void setBookprice(double bookprice) {
+		this.bookprice = bookprice;
 	}
 	public String getBookname() {
 		return bookname;
@@ -18,10 +39,10 @@ public class Books {
 	public void setBookname(String bookname) {
 		this.bookname = bookname;
 	}
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getImage() {
@@ -36,11 +57,5 @@ public class Books {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	@Override
-	public String toString() {
-		return "Books [bid=" + bid + ", bookname=" + bookname + ", price=" + price + ", image=" + image + ", stock="
-				+ stock + "]";
-	}
-	
 	
 }

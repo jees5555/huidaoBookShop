@@ -6,9 +6,10 @@ import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.github.jees5555.huidaoBookShop.dao.UserDao;
-import com.github.jees5555.huidaoBookShop.entity.Users;
+import com.github.jees5555.huidaoBookShop.entity.User;
 import com.github.jees5555.huidaoBookShop.exception.Myexception;
 import com.github.jees5555.huidaoBookShop.util.DBCPUtil;
 /**
@@ -24,61 +25,29 @@ public class UserDaoImpl implements UserDao {
 	private QueryRunner qr=new QueryRunner(DBCPUtil.getDataSource());
 	
 	@Override
-	public Users login(String username, String password) {
-		// TODO Auto-generated method stub
-	
-		try {
-			return qr.query("select * from users where username=? and password=?", new BeanHandler<Users>(Users.class), username,password);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new Myexception("dasfasdfasdasdfasdfas");
-		}
-		
-	
+	public User login(User user) throws SQLException {
+		String sql ="select * from user where username=? and password=?";
+		return qr.query(sql, new BeanHandler<User>(User.class), user.getUsername(),user.getPassword());
 	}
 	
 	@Override
-	public int add(Users t) {
-		// TODO Auto-generated method stub
-		
-		try {
-			return qr.update("insert into users values(null,?,?,?)", t.getUsername(),t.getPassword(),t.getEmail());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new Myexception("dasfasdfasdasdfasdfas");
-		}
+	public int findUserByName(String username) throws Exception {
+		String sql ="select count(*) from user where username=?";
+		return  qr.query(sql, new ScalarHandler<Long>(), username).intValue();
+	}
+	
+	@Override
+	public int add(User user) throws SQLException {
+		String sql ="insert into user values(null,?,?,?)";
+		return qr.update(sql, user.getUsername(),user.getPassword(),user.getEmail());
 	}
 
 	@Override
-	public int del(Users t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public User findByName(String name) throws SQLException{
+		String sql ="select * from user where username=?";
+		return qr.query(sql, new BeanHandler<User>(User.class), name);
 	}
-
-	@Override
-	public int update(Users t) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Users findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Users> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int findAllRecords() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	
 
 }

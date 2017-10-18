@@ -14,19 +14,24 @@ import com.github.jees5555.huidaoBookShop.util.Page;
 @WebServlet("/showbooks")
 public class ShowBooks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//private BookService bs=new BookServiceImpl();
+	private BookService bs=new BookServiceImpl();
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 			
-			//String pagenum=request.getParameter("pagenum");
-			//Page page=	bs.showPageRecords(pagenum);
-			//page.setServletUrl("ShowBooks");
-			//request.setAttribute("page", page);
-			request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
+			String pagenum=request.getParameter("page");
+			String keywords=request.getParameter("keywords");
+			Page page;
+			try {
+				page = bs.showPageRecords(pagenum,keywords);
+			
+				request.setAttribute("page", page);
+				request.setAttribute("model", "showbooks");
+				request.setAttribute("keywords", keywords);
+				request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 }

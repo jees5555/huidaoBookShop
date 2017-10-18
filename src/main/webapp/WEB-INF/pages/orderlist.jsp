@@ -8,22 +8,7 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo">杭州汇道网上书城</div>
-	<div id="navbar">
-		<div class="userMenu">
-			<ul>
-				<li><a href="${pageContext.request.contextPath }/showbooks">User首页</a></li>
-				<li class="current"><a href="orderlist">我的订单</a></li>
-				<li><a href="cartlist">购物车</a></li>
-				<li><a href="${pageContext.request.contextPath }/">注销</a></li>
-			</ul>
-		</div>
-		<form method="get" name="search" action="">
-			搜索：<input class="input-text" type="text" name="keywords" /><input class="input-btn" type="submit" name="submit" value="" />
-		</form>
-	</div>
-</div>
+<jsp:include page="common/menu.jsp" />
 <div id="content" class="wrap">
 	<div class="list orderList">
 			<table>
@@ -66,8 +51,6 @@
 			<div class="button"><input class="input-gray" type="submit" name="submit" value="查看一个月前的订单" /><input class="input-gray" type="submit" name="submit" value="查看一个月前的订单" /></div>
 	</div>
 </div>
-<div id="footer" class="wrap">
-	杭州汇道网上书城 &copy; 版权所有
-</div>
+<jsp:include page="common/end.jsp" />
 </body>
 </html>

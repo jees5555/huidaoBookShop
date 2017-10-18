@@ -5,8 +5,8 @@ import java.util.List;
 
 
 //界面上所有与分页有关的都在这里
-public class Page {
-	private List records;
+public class Page  <T>{
+	private List<T> records;
 	private int pagesize = DaoUtils.pagesize;//每页显示的记录条数 用配置文件读取
 	private int pagenum;//用户要看的页码即当前页码
 	private int totalpage;//总页数
@@ -17,17 +17,6 @@ public class Page {
 	private int startPage;
 	private int endPage;
 	
-	//动态显示URL
-	private String servletUrl;
-	
-	public String getServletUrl() {
-		return servletUrl;
-	}
-
-
-	public void setServletUrl(String servletUrl) {
-		this.servletUrl = servletUrl;
-	}
 
 
 	public Page(int pagenum,int totalrecords){
@@ -58,10 +47,10 @@ public class Page {
 	}
 	
 	
-	public List getRecords() {
+	public List<T> getRecords() {
 		return records;
 	}
-	public void setRecords(List records) {
+	public void setRecords(List<T> records) {
 		this.records = records;
 	}
 	public int getPagesize() {

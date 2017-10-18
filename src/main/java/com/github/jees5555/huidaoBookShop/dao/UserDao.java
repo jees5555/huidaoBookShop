@@ -1,7 +1,9 @@
 package com.github.jees5555.huidaoBookShop.dao;
 
-import com.github.jees5555.huidaoBookShop.entity.Users;
+import com.github.jees5555.huidaoBookShop.entity.User;
 
-public interface UserDao extends BaseDao<Users>{
-		Users login(String username,String password);
+public interface UserDao extends BaseDao<User>{
+		User login(User user) throws Exception;
+		
+		int findUserByName(String username) throws Exception;
 }

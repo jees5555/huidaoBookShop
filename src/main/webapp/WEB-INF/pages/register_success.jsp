@@ -8,12 +8,7 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo">杭州汇道网上书城</div>
-	<div id="navbar">
-		&nbsp;
-	</div>
-</div>
+<jsp:include page="common/nomenu.jsp" />
 <div id="register">
 	<div class="title">
 		<h2>欢迎注册杭州汇道网上书城</h2>
@@ -31,8 +26,6 @@
 		</div>
 	</div>
 </div>
-<div id="footer" class="wrap">
-	杭州汇道网上书城 &copy; 版权所有
-</div>
+<jsp:include page="common/end.jsp" />
 </body>
 </html>

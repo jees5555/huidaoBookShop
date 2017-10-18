@@ -2,7 +2,7 @@ package com.github.jees5555.huidaoBookShop.dao;
 
 import java.util.List;
 
-import com.github.jees5555.huidaoBookShop.entity.Users;
+import com.github.jees5555.huidaoBookShop.entity.User;
 
 /**
  * 
@@ -15,28 +15,45 @@ public interface BaseDao<T>{
 	/**
 	 * 增加
 	 */
-	int add(T t);
+	default int add(T t) throws Exception{
+		throw new Exception("add method is not avaliable");
+	}
 	/**
 	 * 删除
 	 */
-	int del(T t);
+	default int del(T t) throws Exception{
+		throw new Exception("delete method is not avaliable");
+	}
 	/**
 	 * 更新
 	 */
-	int update(T t);
+	default int update(T t) throws Exception{
+		throw new Exception("update method is not avaliable");
+	};
 	/**
 	 * 查询 1个
 	 */
-	T findById(int id);
+	default T findById(int id) throws Exception{
+		throw new Exception("findbyid method is not avaliable");
+	}
+	/**
+	 * 查询 1个
+	 */
+	default T findByName(String name) throws Exception{
+		throw new Exception("findbyname method is not avaliable");
+	}
 	/**
 	 * 查询一堆
 	 */
-	@Deprecated
-	List<T> findAll();
+	default List<T> findAll() throws Exception{
+		throw new Exception("findall method is not avaliable");
+	}
 	
 	/**
 	 * 获取信息的总条数
 	 */
-	int findAllRecords();
+	default int findAllRecords(String keywords) throws Exception{
+		throw new Exception("findaallrecords method is not avaliable");
+	};
 
 }

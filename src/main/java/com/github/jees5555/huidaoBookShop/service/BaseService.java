@@ -2,40 +2,51 @@ package com.github.jees5555.huidaoBookShop.service;
 
 import java.util.List;
 
-import com.github.jees5555.huidaoBookShop.entity.Users;
+import com.github.jees5555.huidaoBookShop.entity.User;
 
 /**
  * 
- * 锟斤拷锟捷汇到锟斤拷T  type  E  element  K  key   V   value
- * 锟斤拷锟斤拷:锟斤拷锟斤拷锟斤拷删锟侥诧拷慕涌锟?
+ * 杭州汇到：T  type  E  element  K  key   V   value
+ * 描述:定义增删改查的接口
  *	@author Administrator
  *	
  */
 public interface BaseService<T>{
 	/**
-	 * 锟斤拷锟斤拷
+	 * 增加
 	 */
-	int add(T t);
+	default int add(T t) throws Exception{
+		throw new Exception("add method is not avaliable");
+	};
 	/**
 	 * 删除
 	 */
-	int del(T t);
+	default int del(T t) throws Exception{
+		throw new Exception("del method is not avaliable");
+	};
 	/**
-	 * 修改
+	 * 更新
 	 */
-	int update(T t);
+	default int update(T t) throws Exception{
+		throw new Exception("update method is not avaliable");
+	};
 	/**
-	 * 查询 1锟斤拷
+	 * 查询 1个
 	 */
-	T findById(int id);
+	default T findById(int id) throws Exception{
+		throw new Exception("findbyid method is not avaliable");
+	};
 	/**
-	 * 查询一锟斤拷
+	 * 查询一堆
 	 */
-	@Deprecated
-	List<T> findAll();
+	default List<T> findAll() throws Exception{
+		throw new Exception("findall method is not avaliable");
+	};
 	
 	/**
-	 * 锟斤拷取锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷
+	 * 获取信息的总条数
 	 */
-	int findAllRecords();
+	default int findAllRecords(String keywords) throws Exception{
+		throw new Exception("findallrecords method is not avaliable");
+	};
 }

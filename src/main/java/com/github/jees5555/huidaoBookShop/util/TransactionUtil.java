@@ -19,25 +19,17 @@ public class TransactionUtil {
 	//同一个线程共享一个资源
 	private static ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 	
-	private static DataSource ds;
-	static{
-		try {
-			InputStream in = DBCPUtil.class.getClassLoader().getResourceAsStream("dbcpconfig.properties");
-			Properties props = new Properties();
-			props.load(in);
-			ds = BasicDataSourceFactory.createDataSource(props);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private static DataSource dataSource= DBCPUtil.getDataSource();
+	
 	public static DataSource getDataSource(){
-		return ds;
+		return dataSource;
 	}
+	
 	public static Connection getConnection(){
 		try {
 			Connection conn = tl.get();
 			if(conn==null){
-				conn = ds.getConnection();
+				conn = dataSource.getConnection();
 				tl.set(conn);
 			}
 			return conn;
@@ -45,49 +37,32 @@ public class TransactionUtil {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	public static void startTransaction(){
 		try {
-			Connection conn = tl.get();
-			if(conn==null){
-				conn = getConnection();
-//				tl.set(conn);
-			}
-			conn.setAutoCommit(false);
+			getConnection().setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	public static void rollback(){
 		try {
-			Connection conn = tl.get();
-			if(conn==null){
-				conn = getConnection();
-//				tl.set(conn);
-			}
-			conn.rollback();
+			getConnection().rollback();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	public static void commit(){
 		try {
-			Connection conn = tl.get();
-			if(conn==null){
-				conn = getConnection();
-//				tl.set(conn);
-			}
-			conn.commit();
+			getConnection().commit();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	public static void relase(){
+	public static void close(){
 		try {
-			Connection conn = tl.get();
-			if(conn!=null){
-				conn.close();
-				tl.remove();
-			}
+			getConnection().close();
+			tl.remove();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -1,6 +1,6 @@
 package com.github.jees5555.huidaoBookShop.entity;
 
-public class Users {
+public class User {
 	private int uid;
 	private String username;
 	private String password;

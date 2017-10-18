@@ -8,72 +8,82 @@
 <title></title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/style.css" />
+<script type="text/javascript">
+var xmlhttp;
+if (window.XMLHttpRequest){
+  xmlhttp=new XMLHttpRequest();
+}else{
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+function addtocartlist() {
+	var bid = document.getElementsByName("bid");
+	var bidlist ="";
+	for(var i = 0; i < bid.length; i++){
+        if(bid[i].checked == true){
+        	bidlist += bid[i].value + ",";
+        }
+	}
+	if(bidlist==""){
+		alert("你没有选择书本");
+		return;
+	}
+
+	xmlhttp.open("POST", "addtocartlist",true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("bid="+bidlist);
+	xmlhttp.onreadystatechange=function(){
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			    var text=xmlhttp.responseText;
+			    if(text=="success"){
+			    	alert("已添加到购物车");
+			    }else{
+			    	alert("服务器错误，添加失败");
+			    }
+			}
+	}
+}
+</script>
 </head>
 <body>
-	<div id="header" class="wrap">
-		<div id="logo">杭州汇道网上书城</div>
-		<div id="navbar">
-			<div class="userMenu">
-				<ul>
-					<li class="current"><a
-						href="${pageContext.request.contextPath }/showbooks">User首页</a></li>
-					<li><a href="orderlist">我的订单</a></li>
-					<li><a href="cartlist">购物车</a></li>
-					<li><a href="${pageContext.request.contextPath}/">注销</a></li>
-				</ul>
-			</div>
-			<form method="get" name="search" action="">
-				搜索：<input class="input-text" type="text" name="keywords" /><input
-					class="input-btn" type="submit" name="submit" value="" />
-			</form>
-		</div>
-	</div>
+	<jsp:include page="common/menu.jsp" />
 	<div id="content" class="wrap">
 		<div class="list bookList">
 			<form method="post" name="shoping" action="shopping.html">
 				<table>
 					<tr class="title">
-						<th class="checker"></th>
+						<th class="checker">选择</th>
+						<th class="view">图片预览</th>
 						<th>书名</th>
 						<th class="price">价格</th>
 						<th class="store">库存</th>
-						<th class="view">图片预览</th>
+						
 					</tr>
 					<c:choose>
-						<c:when test="${!empty page }">
+						<c:when test="${!empty page and !empty page.records}">
 							<c:forEach items="${page.records }" var="book" varStatus="vs">
 								<tr class="${vs.index%2==0?'':'odd' }">
-									<td><input type="checkbox" name="bookId" value="${book.bid }" /></td>
+									<td><input type="checkbox" name="bid" value="${book.bid }" /></td>
+									<td class="thumb"><img src="images/book/${book.image }" /></td>
 									<td class="title">${book.bookname }</td>
 									<td>￥${book.price }</td>
-									<td>${book.stock}</td>
-									<td class="thumb"><img src="${book.image }" /></td>
+									<td>${book.stock}</td>	
 								</tr>
 							</c:forEach>
-
 						</c:when>
-						<c:otherwise>
-						
-						没有椒下次来
-					
-					</c:otherwise>
+						<c:otherwise><tr><td colspan="5">没有找到书本</td></tr></c:otherwise>
 					</c:choose>
-
-
 				</table>
 				<div class="page-spliter">
-				<jsp:include page="page.jsp" />
-				<%-- <%@ include file="page.jsp" %> --%>
-					<!-- <a href="">&lt;</a> <a href="#">首页</a> <span class="current">1</span>
-					<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <span>...</span>
-					<a href="#">尾页</a> <a href="#">&gt;</a> -->
+				<jsp:include page="common/page.jsp" />
+				
 				</div>
 				<div class="button">
-					<input class="input-btn" type="submit" name="submit" value="" />
+					<input class="input-btn" type="button" onclick="addtocartlist()" />
 				</div>
 			</form>
 		</div>
 	</div>
-	<div id="footer" class="wrap">杭州汇道网上书城 &copy; 版权所有</div>
+	<jsp:include page="common/end.jsp" />
 </body>
 </html>
