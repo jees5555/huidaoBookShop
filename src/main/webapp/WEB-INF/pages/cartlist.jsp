@@ -14,12 +14,13 @@ window.onload=function (){
 
 function calbookprice(){
 	var bp = document.getElementsByName("bookprice");
-	var totalprice=0;
+	var totalprice=0.0;
 	for(var i = 0; i < bp.length; i++){
     
-		totalprice += parseInt(bp[i].innerHTML);
+		totalprice +=parseFloat(bp[i].innerHTML);
    
 	}
+
 	document.getElementById("totalprice").innerHTML=totalprice;
 }
 </script>

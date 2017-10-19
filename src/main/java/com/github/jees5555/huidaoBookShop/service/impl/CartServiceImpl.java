@@ -30,7 +30,9 @@ public class CartServiceImpl implements CartService{
 			for(Cart cart:carts){
 				if(cart.getBid()==bid){
 					//存在就update
-					cart.addBookCount();
+					cart.setCount(cart.getCount()+1);
+					double bookprice=bd.findById(bid).getPrice();
+					cart.setBookprice(bookprice*cart.getCount());
 					cd.update(cart);
 					flag=true;
 				}

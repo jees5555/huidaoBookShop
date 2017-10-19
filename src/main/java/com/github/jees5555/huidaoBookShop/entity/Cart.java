@@ -49,10 +49,5 @@ public class Cart {
 	}
 
 
-	public void addBookCount(){
-		double price =this.bookprice/this.count;
-		this.count=this.count+1;
-		this.bookprice=this.count*price;
-	}
 	
 }
