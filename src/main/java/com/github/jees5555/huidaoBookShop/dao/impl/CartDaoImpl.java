@@ -38,7 +38,7 @@ private QueryRunner qr=new QueryRunner(DBCPUtil.getDataSource());
 
 @Override
 	public int add(Cart cart) throws Exception {
-		String sql="insert into cart (uid,bid,count,price,bookprice) values (?,?,?,?)" ;
+		String sql="insert into cart (uid,bid,count,bookprice) values (?,?,?,?)" ;
 		return qr.update(TransactionUtil.getConnection(), sql,cart.getUid(),cart.getBid(),cart.getCount(),cart.getBookprice());
 	}
 

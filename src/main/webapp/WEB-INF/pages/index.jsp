@@ -29,7 +29,7 @@ function addtocartlist() {
 		return;
 	}
 
-	xmlhttp.open("POST", "addtocartlist",true);
+	xmlhttp.open("POST", "cart/add",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("bid="+bidlist);
 	xmlhttp.onreadystatechange=function(){
@@ -64,7 +64,7 @@ function addtocartlist() {
 							<c:forEach items="${page.records }" var="book" varStatus="vs">
 								<tr class="${vs.index%2==0?'':'odd' }">
 									<td><input type="checkbox" name="bid" value="${book.bid }" /></td>
-									<td class="thumb"><img src="images/book/${book.image }" /></td>
+									<td class="thumb"><img src="${pageContext.request.contextPath }/images/book/${book.image }" /></td>
 									<td class="title">${book.bookname }</td>
 									<td>￥${book.price }</td>
 									<td>${book.stock}</td>	

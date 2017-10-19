@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -49,9 +50,9 @@ public class BookDaoImpl implements BookDao{
 	}
 	
 	@Override
-	public Book findById(int id) throws Exception {
-		String sql ="select * form book where id="+id;
-		return qr.query(sql, new ScalarHandler<Book>());
+	public Book findById(int bid) throws Exception {
+		String sql ="select * from book where bid=?";
+		return qr.query(sql, new BeanHandler<Book>(Book.class),bid);
 	}
 
 

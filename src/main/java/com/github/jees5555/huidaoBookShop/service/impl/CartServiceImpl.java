@@ -51,6 +51,7 @@ public class CartServiceImpl implements CartService{
 		TransactionUtil.commit();
 		return bids.size();
 		}catch(Exception e){
+			e.printStackTrace();
 			TransactionUtil.rollback();
 			return 0;
 		}finally{

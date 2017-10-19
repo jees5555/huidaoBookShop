@@ -42,7 +42,7 @@ function calbookprice(){
 							<c:forEach items="${cartlist }" var="cartvo" varStatus="vs">
 								<tr class="${vs.index%2==0?'':'odd' }">
 									<td><input type="checkbox" name="bid" value="${cartvo.bid }" /></td>
-									<td class="thumb"><img src="images/book/${cartvo.image }" /></td>
+									<td class="thumb"><img src="${pageContext.request.contextPath }/images/book/${cartvo.image }" /></td>
 									<td class="title">${cartvo.bookname }</td>
 									<td><input class="input-text" type="text" name="nums" value="${cartvo.count }" /></td>
 									<td>￥ <span><a name="bookprice">${cartvo.bookprice}</a></span></td>	

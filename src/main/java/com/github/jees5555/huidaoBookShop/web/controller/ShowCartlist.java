@@ -17,7 +17,7 @@ import com.github.jees5555.huidaoBookShop.service.impl.BookServiceImpl;
 import com.github.jees5555.huidaoBookShop.service.impl.CartServiceImpl;
 import com.github.jees5555.huidaoBookShop.vo.CartVo;
 
-@WebServlet("/cartlist")
+@WebServlet("/cart/cartlist")
 public class ShowCartlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CartService cs = new CartServiceImpl();
@@ -37,7 +37,7 @@ public class ShowCartlist extends HttpServlet {
 			
 			request.setAttribute("cartlist", list);
 			request.setAttribute("model", "cartlist");
-			request.getRequestDispatcher("WEB-INF/pages/cartlist.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/pages/cartlist.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

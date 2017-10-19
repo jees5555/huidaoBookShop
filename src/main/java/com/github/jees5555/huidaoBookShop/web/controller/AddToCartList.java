@@ -20,7 +20,7 @@ import com.github.jees5555.huidaoBookShop.service.impl.CartServiceImpl;
 /**
  * Servlet implementation class AddToCartList
  */
-@WebServlet("/addtocartlist")
+@WebServlet("/cart/add")
 public class AddToCartList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private CartService cs =new CartServiceImpl();   
@@ -47,8 +47,12 @@ public class AddToCartList extends HttpServlet {
 				throw new ServletException();
 			}
 			user.setUid(uid);		
-			cs.addOrUpdateCart(cartlist,user);
-			response.getWriter().print("success");
+			int result=cs.addOrUpdateCart(cartlist,user);
+			if(result==0){
+				response.getWriter().print("failure");
+			}else{
+				response.getWriter().print("success");
+			}
 		}else{
 			response.getWriter().print("failure");
 		}
