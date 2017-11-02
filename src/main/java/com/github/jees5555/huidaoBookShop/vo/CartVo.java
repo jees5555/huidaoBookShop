@@ -4,7 +4,7 @@ public class CartVo {
 	private int uid;
 	private int bid;
 	private int count;
-	private double bookprice;
+
 	private String bookname;
 	private double price;
 	private String image;
@@ -27,12 +27,8 @@ public class CartVo {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public double getBookprice() {
-		return bookprice;
-	}
-	public void setBookprice(double bookprice) {
-		this.bookprice = bookprice;
-	}
+
+	
 	public String getBookname() {
 		return bookname;
 	}

@@ -6,7 +6,7 @@
 		<div class="userMenu">
 			<ul>
 				<li ${model=="showbooks"?"class='current'":""} ><a href="${pageContext.request.contextPath }/showbooks">首页</a></li>
-				<li ${model=="orderlist"?"class='current'":""} ><a href="orderlist">我的订单</a></li>
+				<li ${model=="orderlist"?"class='current'":""} ><a href="${pageContext.request.contextPath }/order/orderlist">我的订单</a></li>
 				<li ${model=="cartlist"?"class='current'":""} ><a href="${pageContext.request.contextPath }/cart/cartlist">购物车</a></li>
 				<li><a href="${pageContext.request.contextPath}/">注销</a></li>
 					<li>${sessionScope.username}，欢迎光临汇道网上书城</li>

@@ -11,6 +11,7 @@ public interface CartDao extends BaseDao<Cart>{
 
 	List<Cart> showUserCartList(User user) throws SQLException;
 
-	List<CartVo> findCartByUid(User user) throws Exception;
+	List<CartVo> findCartByUid(User user,String keywords) throws Exception;
+
 
 }

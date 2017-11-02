@@ -3,7 +3,6 @@ package com.github.jees5555.huidaoBookShop.web.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,36 +17,38 @@ import com.github.jees5555.huidaoBookShop.service.CartService;
 import com.github.jees5555.huidaoBookShop.service.impl.CartServiceImpl;
 
 /**
- * Servlet implementation class AddToCartList
+ * Servlet implementation class UpdateCart
  */
-@WebServlet("/cart/add")
-public class AddToCartList extends HttpServlet {
+@WebServlet("/cart/update")
+public class UpdateCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private CartService cs =new CartServiceImpl();   
+	private CartService cs =new CartServiceImpl();   
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddToCartList() {
+    public UpdateCart() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bid=request.getParameter("bid");
-		if(bid!=null &&! "".equals(bid)){
-			List <Integer> cartlist =new ArrayList<>();
-			cartlist=Arrays.stream(bid.split(",")).filter(e->!e.equals("")).map(Integer::parseInt).collect(Collectors.toList());
+		String bidStr=request.getParameter("bid");
+		String bookcountStr=request.getParameter("bookcount");
+		if(bidStr!=null &&! "".equals(bidStr)&&bookcountStr!=null&&!"".equals(bookcountStr)){
 			User user =new User();
 			Integer uid=(Integer) request.getSession().getAttribute("uid");
 			if(uid ==null){
 				throw new ServletException();
 			}
-			user.setUid(uid);		
-			int result=cs.addOrUpdateCart(cartlist,user);
+			user.setUid(uid);
+			Integer bid=Integer.parseInt(bidStr);
+			Integer bookcount=Integer.parseInt(bookcountStr);
+			int result=cs.updateCartBookCount(bid,bookcount,user);
 			if(result==0){
 				response.getWriter().print("failure");
 			}else{
@@ -56,8 +57,6 @@ public class AddToCartList extends HttpServlet {
 		}else{
 			response.getWriter().print("failure");
 		}
-	
-		
 	}
 
 }

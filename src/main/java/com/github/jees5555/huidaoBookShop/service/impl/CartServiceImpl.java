@@ -23,16 +23,13 @@ public class CartServiceImpl implements CartService{
 		//开始事务
 		TransactionUtil.startTransaction();
 		//查询已有购物车
-		List<Cart> carts =new ArrayList<>(); 
-		carts=cd.showUserCartList(user);
+		List<Cart> carts =cd.showUserCartList(user);
 		for (Integer bid: bids){
 			boolean flag=false;
 			for(Cart cart:carts){
 				if(cart.getBid()==bid){
 					//存在就update
 					cart.setCount(cart.getCount()+1);
-					double bookprice=bd.findById(bid).getPrice();
-					cart.setBookprice(bookprice*cart.getCount());
 					cd.update(cart);
 					flag=true;
 				}
@@ -42,8 +39,6 @@ public class CartServiceImpl implements CartService{
 				cart.setUid(user.getUid());
 				cart.setBid(bid);
 				cart.setCount(1);
-				double bookprice=bd.findById(bid).getPrice();
-				cart.setBookprice(bookprice);
 				cd.add(cart);
 				
 			}
@@ -63,10 +58,9 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<CartVo> findCartByUid(User user)   {
-		
+	public List<CartVo> findCartByUid(User user,String keywords)   {
 			try {
-				return cd.findCartByUid(user);
+				return cd.findCartByUid(user,keywords);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -75,4 +69,56 @@ public class CartServiceImpl implements CartService{
 		
 	}
 
+	@Override
+	public int deleteCart(List<Integer> bids, User user) {
+		try{
+			//开始事务
+			TransactionUtil.startTransaction();
+			//查询已有购物车
+			List<Cart> carts =cd.showUserCartList(user);
+			for (Integer bid: bids){
+				for(Cart cart:carts){
+					if(cart.getBid()==bid){
+						//存在就delete
+						cd.del(cart);
+						
+					}
+				}
+			}
+			//提交事务
+			TransactionUtil.commit();
+			return bids.size();
+	}catch(Exception e){
+		e.printStackTrace();
+		TransactionUtil.rollback();
+		return 0;
+	}finally{
+		TransactionUtil.close();
+	}
+}
+
+	@Override
+	public int updateCartBookCount(Integer bid, Integer bookcount, User user) {
+		try{
+			//开始事务
+			TransactionUtil.startTransaction();
+			//查询已有购物车
+			Cart cart =new Cart();
+			cart.setUid(user.getUid());
+			cart.setBid(bid);
+			cart.setCount(bookcount);
+	
+			cd.update(cart);
+			
+			//提交事务
+			TransactionUtil.commit();
+			return 1;
+	}catch(Exception e){
+		e.printStackTrace();
+		TransactionUtil.rollback();
+		return 0;
+	}finally{
+		TransactionUtil.close();
+	}
+	}
 }

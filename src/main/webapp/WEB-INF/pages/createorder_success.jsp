@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" />
 </head>
 <body>
 <jsp:include page="common/menunosearch.jsp" />

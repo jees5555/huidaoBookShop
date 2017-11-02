@@ -6,7 +6,6 @@ public class Cart {
 	private int uid;
 	private int bid;
 	private int count;
-	private double bookprice;
 	
 	
 	public int getUid() {
@@ -39,14 +38,7 @@ public class Cart {
 	}
 
 
-	public double getBookprice() {
-		return bookprice;
-	}
 
-
-	public void setBookprice(double bookprice) {
-		this.bookprice = bookprice;
-	}
 
 
 	

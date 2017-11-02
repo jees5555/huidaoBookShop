@@ -15,6 +15,7 @@ import com.github.jees5555.huidaoBookShop.dao.BookDao;
 import com.github.jees5555.huidaoBookShop.entity.Book;
 import com.github.jees5555.huidaoBookShop.exception.Myexception;
 import com.github.jees5555.huidaoBookShop.util.DBCPUtil;
+import com.github.jees5555.huidaoBookShop.util.TransactionUtil;
 
 public class BookDaoImpl implements BookDao{
 	private QueryRunner qr=new QueryRunner(DBCPUtil.getDataSource());
@@ -35,6 +36,12 @@ public class BookDaoImpl implements BookDao{
 	
 			
 			return rec==null?0:rec.intValue();
+		
+	}
+	@Override
+	public int updateBookStock(Book book) throws SQLException {
+		String sql="update book set stock=? where bid=?";
+		return qr.update(TransactionUtil.getConnection(),sql,book.getStock(),book.getBid());
 		
 	}
 

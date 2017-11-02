@@ -54,6 +54,6 @@ public interface BaseDao<T>{
 	 */
 	default int findAllRecords(String keywords) throws Exception{
 		throw new Exception("findaallrecords method is not avaliable");
-	};
+	}
 
 }

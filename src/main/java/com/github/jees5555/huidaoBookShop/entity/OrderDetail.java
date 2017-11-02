@@ -1,27 +1,36 @@
 package com.github.jees5555.huidaoBookShop.entity;
 
 public class OrderDetail {
-	private int oid;
-	private Book book;
-	private int count;
-	public int getOid() {
+	private Integer oid;
+	private Integer bid;
+	private Double historyBookPrice;
+	private Integer count;
+	
+	public Integer getOid() {
 		return oid;
 	}
-	public void setOid(int oid) {
+	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
-	public Book getBook() {
-		return book;
+	public Integer getBid() {
+		return bid;
 	}
-	public void setBook(Book book) {
-		this.book = book;
+	public void setBid(Integer bid) {
+		this.bid = bid;
 	}
-	public int getCount() {
+	public Double getHistoryBookPrice() {
+		return historyBookPrice;
+	}
+	public void setHistoryBookPrice(Double historyBookPrice) {
+		this.historyBookPrice = historyBookPrice;
+	}
+	public Integer getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
-
+	
+	
 	
 }

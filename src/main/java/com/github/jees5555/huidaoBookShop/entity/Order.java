@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
-	private int oid;
+	private Long oid;
 	private int uid;
 	private List<OrderDetail> orderdetail;
-	private float allprice;
+	private Double allprice;
 	private LocalDateTime createtime;
 	private String status;
 	
-	public int getOid() {
+	public Long getOid() {
 		return oid;
 	}
-	public void setOid(int oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
 	}
 	public int getUid() {
@@ -29,10 +29,10 @@ public class Order {
 	public void setOrderdetail(List<OrderDetail> orderdetail) {
 		this.orderdetail = orderdetail;
 	}
-	public float getAllprice() {
+	public Double getAllprice() {
 		return allprice;
 	}
-	public void setAllprice(float allprice) {
+	public void setAllprice(Double allprice) {
 		this.allprice = allprice;
 	}
 	public LocalDateTime getCreatetime() {

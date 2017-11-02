@@ -28,7 +28,7 @@ public class ShowBooks extends HttpServlet {
 				request.setAttribute("page", page);
 				request.setAttribute("model", "showbooks");
 				request.setAttribute("keywords", keywords);
-				request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -25,12 +25,13 @@ public class ShowCartlist extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 			List<CartVo>  list=null;
+			String keywords=request.getParameter("keywords");
 			try{
 				HttpSession session =request.getSession();
 				Integer uid =(Integer) session.getAttribute("uid");
 				User user =new User();
 				user.setUid(uid);
-				list=cs.findCartByUid(user);
+				list=cs.findCartByUid(user,keywords);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

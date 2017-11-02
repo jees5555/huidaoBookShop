@@ -32,22 +32,32 @@ private QueryRunner qr=new QueryRunner(DBCPUtil.getDataSource());
 
 @Override
 	public int update(Cart cart) throws Exception {
-		String sql="update cart set count=?,bookprice=? where bid=? and uid =?";
-		return qr.update(TransactionUtil.getConnection(), sql,cart.getCount(),cart.getBookprice(),cart.getBid(),cart.getUid());
+		String sql="update cart set count=? where bid=? and uid =?";
+		return qr.update(TransactionUtil.getConnection(), sql,cart.getCount(),cart.getBid(),cart.getUid());
 	}
 
 @Override
 	public int add(Cart cart) throws Exception {
-		String sql="insert into cart (uid,bid,count,bookprice) values (?,?,?,?)" ;
-		return qr.update(TransactionUtil.getConnection(), sql,cart.getUid(),cart.getBid(),cart.getCount(),cart.getBookprice());
+		String sql="insert into cart (uid,bid,count) values (?,?,?)" ;
+		return qr.update(TransactionUtil.getConnection(), sql,cart.getUid(),cart.getBid(),cart.getCount());
 	}
 
 
 @Override
-public List<CartVo> findCartByUid(User user) throws Exception {
-	String sql="select * from cart,book where cart.bid=book.bid and cart.uid=?";
+public List<CartVo> findCartByUid(User user,String keywords) throws Exception {
+	if(keywords==null ||"".equals(keywords)){
+		String sql="select * from cart,book where cart.bid=book.bid and cart.uid=?";
+		return qr.query(TransactionUtil.getConnection(),sql, new BeanListHandler<CartVo>(CartVo.class),user.getUid());
+	}else{
+		String sql="select * from cart,book where cart.bid=book.bid and cart.uid=? and book.bookname like ?";
+		keywords="%"+keywords+"%";
+		return qr.query(TransactionUtil.getConnection(),sql, new BeanListHandler<CartVo>(CartVo.class),user.getUid(),keywords);
+	}
 	
-	return qr.query(TransactionUtil.getConnection(),sql, new BeanListHandler<CartVo>(CartVo.class),user.getUid());
 }
-
+@Override
+	public int del(Cart cart) throws Exception {
+	String sql="delete from cart where uid=? and bid=?";
+		return qr.update(TransactionUtil.getConnection(), sql,cart.getUid(),cart.getBid());
+	}
 }

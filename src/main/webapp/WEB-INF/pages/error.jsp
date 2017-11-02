@@ -8,21 +8,12 @@
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" />
 </head>
 <body>
-<jsp:include page="common/nomenu.jsp" />
-<div id="register">
-	<div class="title">
-		<h2>欢迎注册杭州汇道网上书城</h2>
-	</div>
-	<div class="steps">
-		<ul class="clearfix">
-			<li class="past">1.填写注册信息</li>
-			<li class="last">2.注册成功</li>
-		</ul>
-	</div>
+<jsp:include page="common/menunosearch.jsp" />
+<div id="content" class="wrap">
 	<div class="success">
 		<div class="information">
-			<p>恭喜：注册成功！</p>
-			<p><a href="showbooks">点此进入用户中心&gt;&gt;</a></p>
+			<p>抱歉，服务器发生错误！</p>
+			<p><a href="${pageContext.request.contextPath }/showbooks">点此返回主页&gt;&gt;</a></p>
 		</div>
 	</div>
 </div>

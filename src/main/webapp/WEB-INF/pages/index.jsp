@@ -28,7 +28,7 @@ function addtocartlist() {
 		alert("你没有选择书本");
 		return;
 	}
-
+	bidlist=bidlist.substring(0, bidlist.length-1);
 	xmlhttp.open("POST", "cart/add",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("bid="+bidlist);
@@ -49,7 +49,7 @@ function addtocartlist() {
 	<jsp:include page="common/menu.jsp" />
 	<div id="content" class="wrap">
 		<div class="list bookList">
-			<form method="post" name="shoping" action="shopping.html">
+			<form method="post" name="shoping" >
 				<table>
 					<tr class="title">
 						<th class="checker">选择</th>

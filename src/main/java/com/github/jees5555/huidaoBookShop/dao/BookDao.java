@@ -13,4 +13,6 @@ public interface BookDao extends BaseDao<Book>{
 		 * @throws SQLException 
 		 */
 	List<Book> showPageRecords(int startnum,int pagesize,String keywords) throws SQLException;
+
+		int updateBookStock(Book book) throws SQLException;
 }
