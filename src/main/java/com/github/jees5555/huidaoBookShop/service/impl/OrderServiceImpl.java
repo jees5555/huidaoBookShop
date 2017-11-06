@@ -17,8 +17,10 @@ import com.github.jees5555.huidaoBookShop.entity.Order;
 import com.github.jees5555.huidaoBookShop.entity.OrderDetail;
 import com.github.jees5555.huidaoBookShop.entity.User;
 import com.github.jees5555.huidaoBookShop.service.OrderService;
+import com.github.jees5555.huidaoBookShop.util.Page;
 import com.github.jees5555.huidaoBookShop.util.TransactionUtil;
 import com.github.jees5555.huidaoBookShop.vo.CartVo;
+import com.github.jees5555.huidaoBookShop.vo.OrderVo;
 
 public class OrderServiceImpl implements OrderService{
 	private CartDao cd=new CartDaoImpl();
@@ -83,6 +85,24 @@ public class OrderServiceImpl implements OrderService{
 			TransactionUtil.close();
 		}
 		
+	}
+
+	@Override
+	public Page<OrderVo> showOrderList(String pagenum, String keywords, String history) throws Exception {
+		int num=1;
+		if(pagenum!=null){
+			num=Integer.parseInt(pagenum);
+		}
+	
+		int totalRecords=od.findAllRecords(keywords,history);
+		
+		Page<OrderVo> page=new Page<>(num,totalRecords);
+		
+		List<OrderVo> orders=od.showOrderList(page.getStartIndex(), page.getPagesize(),keywords,history);
+		
+		page.setRecords(orders);
+		
+		return page;
 	}
 
 }
