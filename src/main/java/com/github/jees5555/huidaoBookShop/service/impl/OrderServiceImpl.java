@@ -36,6 +36,7 @@ public class OrderServiceImpl implements OrderService{
 		//新建Order并获取oid
 		Order o =new Order();
 		o.setUid(user.getUid());
+		o.setReceiver(user.getUsername());
 		o.setAllprice(0.0);
 		o.setCreatetime(LocalDateTime.now());
 		o.setStatus("已支付");
@@ -88,17 +89,17 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Page<OrderVo> showOrderList(String pagenum, String keywords, String history) throws Exception {
+	public Page<OrderVo> showOrderList(User user,String pagenum, String keywords, String history) throws Exception {
 		int num=1;
 		if(pagenum!=null){
 			num=Integer.parseInt(pagenum);
 		}
 	
-		int totalRecords=od.findAllRecords(keywords,history);
+		int totalRecords=od.findAllRecords(user,keywords,history);
 		
 		Page<OrderVo> page=new Page<>(num,totalRecords);
 		
-		List<OrderVo> orders=od.showOrderList(page.getStartIndex(), page.getPagesize(),keywords,history);
+		List<OrderVo> orders=od.showOrderList(user,page.getStartIndex(), page.getPagesize(),keywords,history);
 		
 		page.setRecords(orders);
 		

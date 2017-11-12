@@ -22,7 +22,7 @@
 	<div class="success">
 		<div class="information">
 			<p>恭喜：注册成功！</p>
-			<p><a href="showbooks">点此进入用户中心&gt;&gt;</a></p>
+			<p><a href="book/booklist">点此进入用户中心&gt;&gt;</a></p>
 		</div>
 	</div>
 </div>

@@ -13,7 +13,7 @@ public class TestService {
 		BookService bs=new BookServiceImpl();
 		//client
 		String pagenum="3";//service
-		Page p=bs.showPageRecords(pagenum);
+		Page p=bs.showPageRecords(pagenum,null);
 		
 		//	servlet - setattribre("page",page)--jsp
 		

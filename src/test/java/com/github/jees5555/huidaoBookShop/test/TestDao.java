@@ -14,8 +14,8 @@ public class TestDao {
 	@Test
 	public void testBookDao() throws Exception{
 		BookDao bd=new BookDaoImpl();//多态
-		int a=bd.findAllRecords();
-		List<Book> books=bd.showPageRecords(0, 3);
+		int a=bd.findAllRecords(null);
+		List<Book> books=bd.showPageRecords(0, 3, null);
 		System.out.println(books);
 		
 	}

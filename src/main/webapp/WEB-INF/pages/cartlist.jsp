@@ -46,12 +46,16 @@ function delcart(){
 	bidlist=bidlist.substring(0, bidlist.length-1);
 	xmlhttp.open("POST", "delete",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.setRequestHeader("x-requested-with", "XMLHttpRequest");
 	xmlhttp.send("bid="+bidlist);
 	xmlhttp.onreadystatechange=function(){
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200){
 			    var text=xmlhttp.responseText;
 			    if(text=="success"){
 			    	alert("已从购物车删除项目");
+			    }else if(text=="timeout"){
+			    	alert("当前会话已过期，请重新登录");
+			    	location.href='../';
 			    }else{
 			    	alert("服务器错误，删除失败");
 			    }
@@ -67,12 +71,16 @@ function updatecart(bid){
 	}else{
 		xmlhttp.open("POST", "update",true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("x-requested-with", "XMLHttpRequest");
 		xmlhttp.send("bid="+bid+"&bookcount="+bookcount);
 		xmlhttp.onreadystatechange=function(){
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				    var text=xmlhttp.responseText;
 				    if(text=="success"){
 				    	
+				    }else if(text=="timeout"){
+				    	alert("当前会话已过期，请重新登录");
+				    	location.href='../';
 				    }else{
 				    	alert("服务器错误，更新失败");
 				    }

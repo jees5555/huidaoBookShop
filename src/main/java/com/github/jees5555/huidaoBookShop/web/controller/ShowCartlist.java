@@ -37,7 +37,7 @@ public class ShowCartlist extends HttpServlet {
 			}
 			
 			request.setAttribute("cartlist", list);
-			request.setAttribute("model", "cartlist");
+			request.setAttribute("model", "cart/cartlist");
 			request.getRequestDispatcher("/WEB-INF/pages/cartlist.jsp").forward(request, response);
 	}
 

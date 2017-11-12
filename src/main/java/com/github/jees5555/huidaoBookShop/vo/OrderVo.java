@@ -1,9 +1,7 @@
 package com.github.jees5555.huidaoBookShop.vo;
 
 import java.util.Date;
-import java.util.List;
 
-import com.github.jees5555.huidaoBookShop.entity.OrderDetail;
 
 public class OrderVo {
 	private Long oid;
@@ -13,7 +11,7 @@ public class OrderVo {
 	private Double historyBookPrice;
 	private Integer count;
 	
-	
+	private String receiver;
 	private Double allprice;
 	private Date createtime;
 	private String status;
@@ -50,6 +48,12 @@ public class OrderVo {
 	}
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 	public Double getAllprice() {
 		return allprice;

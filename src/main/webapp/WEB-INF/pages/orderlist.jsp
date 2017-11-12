@@ -10,9 +10,9 @@
 <script type="text/javascript">
 function showOldOrder(history){
 	var keywords =document.getElementById("keywords").value;
-	if(mode!=null){
+	if(history!=null){
 		if(keywords!=""){
-			window.location.href="${pageContext.request.contextPath}/order/orderlist?history="+history+"keywords="+keywords;
+			window.location.href="${pageContext.request.contextPath}/order/orderlist?history="+history+"&keywords="+keywords;
 		}else{
 			window.location.href="${pageContext.request.contextPath}/order/orderlist?history="+history;
 		}
@@ -43,7 +43,7 @@ function showOldOrder(history){
 									<td class="thumb"><img src="${pageContext.request.contextPath }/images/book/${ordervo.image }" /></td>
 									<td class="title">${ordervo.bookname }</td>
 									<td>${ordervo.count }</td>
-									<td></td>
+									<td>${ordervo.receiver }</td>
 									<td>${ordervo.historyBookPrice*ordervo.count }</td>	
 									<td>${ordervo.createtime}</td>
 									<td>${ordervo.status}</td>

@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
 	private Long oid;
 	private int uid;
-	private List<OrderDetail> orderdetail;
+    private String receiver;
 	private Double allprice;
 	private LocalDateTime createtime;
 	private String status;
@@ -23,11 +23,12 @@ public class Order {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-	public List<OrderDetail> getOrderdetail() {
-		return orderdetail;
+	
+	public String getReceiver() {
+		return receiver;
 	}
-	public void setOrderdetail(List<OrderDetail> orderdetail) {
-		this.orderdetail = orderdetail;
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 	public Double getAllprice() {
 		return allprice;

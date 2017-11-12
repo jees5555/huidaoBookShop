@@ -29,14 +29,18 @@ function addtocartlist() {
 		return;
 	}
 	bidlist=bidlist.substring(0, bidlist.length-1);
-	xmlhttp.open("POST", "cart/add",true);
+	xmlhttp.open("POST", "../cart/add",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.setRequestHeader("x-requested-with", "XMLHttpRequest");
 	xmlhttp.send("bid="+bidlist);
 	xmlhttp.onreadystatechange=function(){
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200){
 			    var text=xmlhttp.responseText;
 			    if(text=="success"){
 			    	alert("已添加到购物车");
+			    }else if(text=="timeout"){
+			    	alert("当前会话已过期，请重新登录");
+			    	location.href='../';
 			    }else{
 			    	alert("服务器错误，添加失败");
 			    }

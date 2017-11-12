@@ -11,8 +11,8 @@ import com.github.jees5555.huidaoBookShop.service.BookService;
 import com.github.jees5555.huidaoBookShop.service.impl.BookServiceImpl;
 import com.github.jees5555.huidaoBookShop.util.Page;
 
-@WebServlet("/showbooks")
-public class ShowBooks extends HttpServlet {
+@WebServlet("/book/booklist")
+public class ShowBooklist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookService bs=new BookServiceImpl();
 	
@@ -26,9 +26,9 @@ public class ShowBooks extends HttpServlet {
 				page = bs.showPageRecords(pagenum,keywords);
 			
 				request.setAttribute("page", page);
-				request.setAttribute("model", "showbooks");
+				request.setAttribute("model", "book/booklist");
 				request.setAttribute("keywords", keywords);
-				request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/pages/booklist.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

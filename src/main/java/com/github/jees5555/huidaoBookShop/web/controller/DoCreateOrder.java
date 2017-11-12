@@ -30,10 +30,12 @@ public class DoCreateOrder extends HttpServlet {
 			cartlist=Arrays.stream(bid.split(",")).filter(e->!e.equals("")).map(Integer::parseInt).collect(Collectors.toList());
 			User user =new User();
 			Integer uid=(Integer) request.getSession().getAttribute("uid");
-			if(uid ==null){
+			String username=(String)request.getSession().getAttribute("username");
+			if(uid ==null || username==null){
 				throw new ServletException();
 			}
-			user.setUid(uid);		
+			user.setUid(uid);
+			user.setUsername(username);
 			int result=os.createOrder(cartlist,user);
 			if(result==0){
 				request.getRequestDispatcher("/WEB-INF/pages/error.jsp").forward(request, response);

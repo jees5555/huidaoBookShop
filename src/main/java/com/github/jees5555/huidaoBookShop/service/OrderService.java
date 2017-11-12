@@ -8,6 +8,6 @@ import com.github.jees5555.huidaoBookShop.util.Page;
 public interface OrderService extends BaseService{
 	int createOrder(List<Integer> bids, User user);
 
-	Page showOrderList(String pagenum, String keywords, String history) throws Exception;
+	Page showOrderList(User user, String pagenum, String keywords, String history) throws Exception;
 
 }

@@ -30,13 +30,22 @@
 <script type="text/javascript">
 	function jump(num){
 		var keywords=document.getElementById("keywords").value;
+		var history=document.getElementById("history").value;
 		if(num==null){
 			num = document.getElementById("s1").value;
 		}
-		if(keywords==""){
-			window.location.href="${pageContext.request.contextPath}/${model}?page="+num;
+		if(history==""){
+			if(keywords==""){
+				window.location.href="${pageContext.request.contextPath}/${model}?page="+num;
+			}else{
+				window.location.href="${pageContext.request.contextPath}/${model}?keywords="+keywords+"&page="+num;
+			}
 		}else{
-			window.location.href="${pageContext.request.contextPath}/${model}?keywords="+keywords+"&page="+num;
+			if(keywords==""){
+				window.location.href="${pageContext.request.contextPath}/${model}?history="+history+"&page="+num;
+			}else{
+				window.location.href="${pageContext.request.contextPath}/${model}?keywords="+keywords+"&history="+history+"&page="+num;
+			}
 		}
 	}
 </script>
