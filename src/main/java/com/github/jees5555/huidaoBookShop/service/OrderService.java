@@ -10,4 +10,5 @@ public interface OrderService extends BaseService{
 
 	Page showOrderList(User user, String pagenum, String keywords, String history) throws Exception;
 
+	int cancleOrder(String oid,User user);
 }

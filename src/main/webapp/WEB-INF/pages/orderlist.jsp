@@ -8,6 +8,13 @@
 <title></title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" />
 <script type="text/javascript">
+var xmlhttp;
+if (window.XMLHttpRequest){
+  xmlhttp=new XMLHttpRequest();
+}else{
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+
 function showOldOrder(history){
 	var keywords =document.getElementById("keywords").value;
 	if(history!=null){
@@ -15,6 +22,28 @@ function showOldOrder(history){
 			window.location.href="${pageContext.request.contextPath}/order/orderlist?history="+history+"&keywords="+keywords;
 		}else{
 			window.location.href="${pageContext.request.contextPath}/order/orderlist?history="+history;
+		}
+	}
+}
+function cancleOrder(oid) {
+	if(confirm("确定要取消订单"+oid+"?")){
+		xmlhttp.open("POST", "cancle",true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("x-requested-with", "XMLHttpRequest");
+		xmlhttp.send("oid="+oid);
+		xmlhttp.onreadystatechange=function(){
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				    var text=xmlhttp.responseText;
+				    if(text=="success"){
+				    	alert("订单已取消");
+				    }else if(text=="timeout"){
+				    	alert("当前会话已过期，请重新登录");
+				    	location.href='../';
+				    }else{
+				    	alert("服务器错误，删除失败");
+				    }
+				    location.reload();
+				}
 		}
 	}
 }
@@ -34,6 +63,7 @@ function showOldOrder(history){
 					<th class="price">订单金额</th>
 					<th class="createTime">下单时间</th>
 					<th class="status">订单状态</th>
+					<th>操作</th>
 				</tr>
 				<c:choose>
 						<c:when test="${!empty page and !empty page.records}">
@@ -47,10 +77,13 @@ function showOldOrder(history){
 									<td>${ordervo.historyBookPrice*ordervo.count }</td>	
 									<td>${ordervo.createtime}</td>
 									<td>${ordervo.status}</td>
+									<td><c:if test="${!ordervo.status.equals('已完成') and !ordervo.status.equals('已取消')}">
+									<input type="button" value="取消订单" onclick="cancleOrder(${ordervo.oid })"/>
+									</c:if></td>
 								</tr>
 							</c:forEach>
 						</c:when>
-						<c:otherwise><tr><td colspan="8">没有搜索到订单</td></tr></c:otherwise>
+						<c:otherwise><tr><td colspan="9">没有搜索到订单</td></tr></c:otherwise>
 					</c:choose>
 			</table>
 			<div class="page-spliter">

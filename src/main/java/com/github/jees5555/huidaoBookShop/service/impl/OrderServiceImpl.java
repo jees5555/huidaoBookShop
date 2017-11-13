@@ -106,4 +106,20 @@ public class OrderServiceImpl implements OrderService{
 		return page;
 	}
 
+	@Override
+	public int cancleOrder(String oid, User user) {
+		try{
+		TransactionUtil.startTransaction();
+		int res=od.cancleOrder(oid,user);
+		TransactionUtil.commit();
+		return res;
+		}catch(Exception e){
+			e.printStackTrace();
+			TransactionUtil.rollback();
+			return 0;
+		}finally{
+			TransactionUtil.close();
+		}
+	}
+
 }

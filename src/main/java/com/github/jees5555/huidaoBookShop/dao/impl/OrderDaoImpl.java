@@ -122,4 +122,10 @@ public List<OrderVo> showOrderList(User user,int startIndex, int pagesize, Strin
 
 
 }
+@Override
+public int cancleOrder(String oid, User user) throws Exception {
+	System.out.println(oid+"  "+user.getUid());
+	String sql="update `order` set status='已取消' where oid=? and uid=?";
+	return qr.update(TransactionUtil.getConnection(),sql,oid,user.getUid());
+}
 }

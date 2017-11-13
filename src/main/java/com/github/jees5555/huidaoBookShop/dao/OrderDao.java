@@ -17,4 +17,6 @@ public interface OrderDao extends BaseDao<Order>{
 	int findAllRecords(User user, String keywords,String history) throws Exception;
 
 	List<OrderVo> showOrderList(User user, int startIndex, int pagesize, String keywords, String history) throws SQLException;
+
+	int cancleOrder(String oid, User user) throws Exception;
 }
